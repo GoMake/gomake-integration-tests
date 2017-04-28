@@ -10,8 +10,8 @@ function generateJwtToken(hasExpiration, hasUserId) {
   const newUser = hasUserId ? user : {
     name: 'Neha'
   };
-  const newToken = !hasExpiration ? jwt.sign(newUser, config.jwtSecret) : jwt.sign(newUser,
-    config.jwtSecret, {
+  const newToken = !hasExpiration ? jwt.sign(newUser, process.env.GM_JWT_SECRET) : jwt.sign(newUser,
+    process.env.GM_JWT_SECRET, {
       expiresIn: '0.1'
     });
   return newToken;

@@ -4,6 +4,8 @@ FROM node:6.4.0-wheezy
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+ENV GM_API_BASE_URL "http://api.gomake.io"
+
 # Install app dependencies
 COPY package.json /usr/src/app/
 RUN npm install
