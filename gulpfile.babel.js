@@ -61,7 +61,7 @@ function runTest(testFiles) {
   return gulp.src(testFiles)
     .pipe(plumber())
     .pipe(mocha({
-      reporter: util.env['mocha-reporter'] || 'spec',
+      reporter: process.env.GM_MOCHA_REPORTER || 'spec',
     }))
     .once('error', (err) => {
       util.log(err);
