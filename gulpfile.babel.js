@@ -6,6 +6,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import util from 'gulp-util';
 import plumber from 'gulp-plumber';
 import mocha from 'gulp-mocha';
+import winston from 'winston';
 
 const plugins = gulpLoadPlugins();
 
@@ -43,6 +44,7 @@ gulp.task('babel', () =>
 );
 
 gulp.task('serve', function() {
+  util.log(`Running integration tests against the following base URL: ${process.env.GM_API_BASE_URL}`)
   return preprocessForTesting(paths.integrationTests);
 });
 
@@ -56,7 +58,6 @@ function preprocessForTesting(testFiles) {
 
 function runTest(testFiles) {
   let reporters;
-
   return gulp.src(testFiles)
     .pipe(plumber())
     .pipe(mocha({
