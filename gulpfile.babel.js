@@ -44,7 +44,8 @@ gulp.task('babel', () =>
 );
 
 gulp.task('serve', function() {
-  util.log(`Running integration tests against the following base URL: ${process.env.GM_API_BASE_URL}`)
+  util.log(`Running integration tests against the following base URL: ${process.env.GM_API_BASE_URL}`);
+  util.log(`Running integration tests with the following reportre: ${process.env.GM_MOCHA_REPORTER || 'spec'}`);
   return preprocessForTesting(paths.integrationTests);
 });
 
