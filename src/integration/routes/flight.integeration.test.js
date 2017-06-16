@@ -117,20 +117,6 @@ describe('#Flights ', () => {
           done();
         });
     });
-
-    it('should return 400 , if jwt has  userId , but flight is not valid ', (done) => {
-      const hasUserId = true;
-      const hasExpiration = false;
-      const token = generateJwtToken(hasExpiration, hasUserId);
-      request
-        .put('/flight/MAVERICK-100/user/google|123')
-        .use(prefix)
-        .set('Authorization', `Bearer ${token}`)
-        .end((err, response) => {
-          assert.equal(response.statusCode, 400);
-          done();
-        });
-    });
   });
 
   describe('# DELETE flight/:flightName/user/:userId', () => {
@@ -161,20 +147,6 @@ describe('#Flights ', () => {
       const token = generateJwtToken();
       request
         .delete('/flight/MAVERICK-1/user/google|123')
-        .use(prefix)
-        .set('Authorization', `Bearer ${token}`)
-        .end((err, response) => {
-          assert.equal(response.statusCode, 400);
-          done();
-        });
-    });
-
-    it('should return 400 , if jwt has  userId , but flight is not valid ', (done) => {
-      const hasUserId = true;
-      const hasExpiration = false;
-      const token = generateJwtToken(hasExpiration, hasUserId);
-      request
-        .delete('/flight/MAVERICK-100/user/google|123')
         .use(prefix)
         .set('Authorization', `Bearer ${token}`)
         .end((err, response) => {
